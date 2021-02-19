@@ -1,0 +1,37 @@
+{
+  "name": "larva/laravel-flysystem-qiniu",
+  "description": "This is a Flysystem adapter for the Qiniu.",
+  "keywords": [ "flysystem", "qiniu", "larva" ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^7.2 | ^8.0",
+    "illuminate/support": "^6.0 || ^7.0 || ^8.0",
+    "league/flysystem": "^1.0",
+    "qiniu/php-sdk": "^7.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Larva\\Flysystem\\Qiniu\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Larva\\Flysystem\\Qiniu\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    },
+    "laravel": {
+      "providers": [
+        "Larva\\Flysystem\\Qiniu\\QiniuServiceProvider"
+      ]
+    }
+  },
+  "prefer-stable": true
+}
