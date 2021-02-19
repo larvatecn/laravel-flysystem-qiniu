@@ -7,6 +7,7 @@
 
 namespace Larva\Flysystem\Qiniu;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Filesystem;
 use Qiniu\Auth;
@@ -21,7 +22,7 @@ class QiniuServiceProvider extends ServiceProvider
      * Perform post-registration booting of services.
      *
      * @return void
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function boot()
     {
