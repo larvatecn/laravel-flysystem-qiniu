@@ -7,7 +7,6 @@
 
 namespace Larva\Flysystem\Qiniu;
 
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Filesystem;
 use Qiniu\Auth;
