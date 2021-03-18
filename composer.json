@@ -11,7 +11,7 @@
     "qiniu/php-sdk": "^7.3"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8.0"
+    "phpunit/phpunit": "^9.5"
   },
   "autoload": {
     "psr-4": {
