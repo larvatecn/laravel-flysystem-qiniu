@@ -9,6 +9,8 @@ namespace Larva\Flysystem\Qiniu;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\ServiceProvider;
+use Larva\Flysystem\Qiniu\Plugins\PutRemoteFile;
+use Larva\Flysystem\Qiniu\Plugins\PutRemoteFileAs;
 use League\Flysystem\Filesystem;
 use Qiniu\Auth;
 
@@ -28,7 +30,10 @@ class QiniuServiceProvider extends ServiceProvider
     {
         $this->app->make('filesystem')->extend('qiniu', function ($app, $config) {
             $auth = new Auth($config['access_key'], $config['secret_key']);
-            return new Filesystem(new QiniuAdapter($auth, $config), $config);
+            $flysystem = new Filesystem(new QiniuAdapter($auth, $config), $config);
+            $flysystem->addPlugin(new PutRemoteFile());
+            $flysystem->addPlugin(new PutRemoteFileAs());
+            return $flysystem;
         });
     }
 

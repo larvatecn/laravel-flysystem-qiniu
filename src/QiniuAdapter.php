@@ -61,6 +61,14 @@ class QiniuAdapter extends AbstractAdapter
     }
 
     /**
+     * @return BucketManager
+     */
+    public function getBucketManager()
+    {
+        return $this->bucketManager;
+    }
+
+    /**
      * Write a new file.
      *
      * @param string $path
