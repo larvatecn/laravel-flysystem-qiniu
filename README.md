@@ -33,7 +33,6 @@ add config
     'driver'     => 'qiniu',
     'access_key' => env('QINIU_ACCESS_KEY'),
     'secret_key' => env('QINIU_SECRET_KEY'),
-    'region' => env('QINIU_RQGION'),
     'bucket' => env('QINIU_BUCKET'),
     'prefix' => env('QINIU_PREFIX'), // optional
     'url' => env('QINIU_BUCKET_URL'),
