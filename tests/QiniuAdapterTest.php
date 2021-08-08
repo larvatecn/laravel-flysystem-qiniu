@@ -77,7 +77,7 @@ class QiniuAdapterTest extends TestCase
     public function testUpdate(AdapterInterface $adapter, $config, $options)
     {
         $this->assertTrue((bool)$adapter->update(
-            "foo/{$options['machineId']}/bar.md",
+            "foo/{$options['machineId']}/foo.md",
             uniqid(),
             new Config()
         ));
@@ -101,22 +101,22 @@ class QiniuAdapterTest extends TestCase
     /**
      * @dataProvider Provider
      */
-    public function testRename(AdapterInterface $adapter, $config, $options)
+    public function testCopy(AdapterInterface $adapter, $config, $options)
     {
-        $this->assertTrue($adapter->rename(
+        $this->assertTrue($adapter->copy(
             "foo/{$options['machineId']}/foo.md",
-            "/foo/{$options['machineId']}/rename.md"
+            "foo/{$options['machineId']}/copy.md"
         ));
     }
 
     /**
      * @dataProvider Provider
      */
-    public function testCopy(AdapterInterface $adapter, $config, $options)
+    public function testRename(AdapterInterface $adapter, $config, $options)
     {
-        $this->assertTrue($adapter->copy(
-            "foo/{$options['machineId']}/bar.md",
-            "/foo/{$options['machineId']}/copy.md"
+        $this->assertTrue($adapter->rename(
+            "foo/{$options['machineId']}/foo.md",
+            "/foo/{$options['machineId']}/rename.md"
         ));
     }
 

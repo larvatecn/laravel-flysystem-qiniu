@@ -63,7 +63,7 @@ class QiniuAdapter extends AbstractAdapter
     /**
      * @return BucketManager
      */
-    public function getBucketManager()
+    public function getBucketManager(): BucketManager
     {
         return $this->bucketManager;
     }
@@ -83,7 +83,7 @@ class QiniuAdapter extends AbstractAdapter
         $params = $config->get('params', null);
         $checkCrc = $config->get('checkCrc', false);
         $mime = Util::guessMimeType($path, $contents);
-        list($ret, $error) = $this->uploadManager->put($token, $object, $contents, $params, $mime, $checkCrc);
+        [, $error] = $this->uploadManager->put($token, $object, $contents, $params, $mime, $checkCrc);
         if ($error !== null) {
             return false;
         } else {
@@ -115,7 +115,7 @@ class QiniuAdapter extends AbstractAdapter
      * @param string $newpath
      * @return bool
      */
-    public function rename($path, $newpath)
+    public function rename($path, $newpath): bool
     {
         if (!$this->copy($path, $newpath)) {
             return false;
@@ -130,11 +130,12 @@ class QiniuAdapter extends AbstractAdapter
      * @param string $newpath
      * @return bool
      */
-    public function copy($path, $newpath)
+    public function copy($path, $newpath): bool
     {
         $object = ltrim($this->applyPathPrefix($path), '/');
         $newObject = ltrim($this->applyPathPrefix($newpath), '/');
-        if ($this->bucketManager->copy($this->getBucket(), $object, $this->getBucket(), $newObject, true) != null) {
+        [, $error] = $this->bucketManager->copy($this->getBucket(), $object, $this->getBucket(), $newObject, true);
+        if ($error != null) {
             return false;
         }
         return true;
@@ -146,10 +147,11 @@ class QiniuAdapter extends AbstractAdapter
      * @param string $path
      * @return bool
      */
-    public function delete($path)
+    public function delete($path): bool
     {
         $object = $this->applyPathPrefix($path);
-        if ($this->bucketManager->delete($this->getBucket(), $object) != null) {
+        [, $error] = $this->bucketManager->delete($this->getBucket(), $object);
+        if ($error != null) {
             return false;
         }
         return true;
@@ -209,7 +211,7 @@ class QiniuAdapter extends AbstractAdapter
      * @param string $dirname
      * @return bool
      */
-    public function deleteDir($dirname)
+    public function deleteDir($dirname): bool
     {
         $files = $this->listContents($dirname);
         foreach ($files as $file) {
@@ -257,7 +259,7 @@ class QiniuAdapter extends AbstractAdapter
      * @param string $path
      * @return bool
      */
-    public function has($path)
+    public function has($path): bool
     {
         $meta = $this->getMetadata($path);
         if ($meta) {
@@ -300,7 +302,7 @@ class QiniuAdapter extends AbstractAdapter
     public function getMetadata($path)
     {
         $object = $this->applyPathPrefix($path);
-        list($ret, $error) = $this->bucketManager->stat($this->getBucket(), $object);
+        [$ret, $error] = $this->bucketManager->stat($this->getBucket(), $object);
         if ($error !== null) {
             return false;
         } else {
@@ -379,7 +381,7 @@ class QiniuAdapter extends AbstractAdapter
      *
      * @return array
      */
-    private function listObjects($directory = '', $recursive = false, $marker = null): array
+    private function listObjects(string $directory = '', bool $recursive = false, $marker = null): array
     {
         $prefix = $directory === '' ? '' : ($directory . '/');
         $delimiter = $recursive ? '' : '/';
