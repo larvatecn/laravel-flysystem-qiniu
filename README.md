@@ -2,7 +2,7 @@
 
 This is a Flysystem adapter for the Qiniu
 
-[![Build Status](https://travis-ci.com/larvatecn/laravel-flysystem-qiniu.svg?branch=master)](https://travis-ci.com/larvatecn/laravel-flysystem-qiniu)
+[![PHP Composer](https://github.com/larvatecn/laravel-flysystem-qiniu/actions/workflows/php.yml/badge.svg)](https://github.com/larvatecn/laravel-flysystem-qiniu/actions/workflows/php.yml)
 
 ## Installation
 
