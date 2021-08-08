@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright (c) 2018 Larva Information Technology Co., Ltd.
- * @link http://www.larvacent.com/
- * @license http://www.larvacent.com/license/
+ * This is NOT a freeware, use is subject to license terms
+ * @copyright Copyright (c) 2010-2099 Jinan Larva Information Technology Co., Ltd.
+ * @link http://www.larva.com.cn/
  */
 
 namespace Larva\Flysystem\Qiniu;
@@ -16,7 +16,6 @@ use Qiniu\Auth;
 
 /**
  * Qiniu服务提供者
- * @package XuTL\Flysystem\Qiniu
  */
 class QiniuServiceProvider extends ServiceProvider
 {

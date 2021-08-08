@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright (c) 2018 Larva Information Technology Co., Ltd.
- * @link http://www.larvacent.com/
- * @license http://www.larvacent.com/license/
+ * This is NOT a freeware, use is subject to license terms
+ * @copyright Copyright (c) 2010-2099 Jinan Larva Information Technology Co., Ltd.
+ * @link http://www.larva.com.cn/
  */
 
 namespace Larva\Flysystem\Qiniu;
@@ -28,22 +28,22 @@ class QiniuAdapter extends AbstractAdapter
     /**
      * @var BucketManager
      */
-    private $bucketManager;
+    private BucketManager $bucketManager;
 
     /**
      * @var UploadManager
      */
-    private $uploadManager;
+    private UploadManager $uploadManager;
 
     /**
      * @var Auth
      */
-    private $auth;
+    private Auth $auth;
 
     /**
      * @var array
      */
-    protected $config = [];
+    protected array $config = [];
 
     /**
      * Constructor.
@@ -51,7 +51,7 @@ class QiniuAdapter extends AbstractAdapter
      * @param Auth $auth
      * @param array $config
      */
-    public function __construct($auth, array $config)
+    public function __construct(Auth $auth, array $config)
     {
         $this->auth = $auth;
         $this->config = $config;
@@ -223,9 +223,9 @@ class QiniuAdapter extends AbstractAdapter
      *
      * @param string $dirname directory name
      * @param Config $config
-     * @return array|false
+     * @return array
      */
-    public function createDir($dirname, Config $config)
+    public function createDir($dirname, Config $config): array
     {
         $object = $this->applyPathPrefix($dirname);
         return ['path' => $object, 'type' => 'dir'];
@@ -255,7 +255,7 @@ class QiniuAdapter extends AbstractAdapter
      * Check whether a file exists.
      *
      * @param string $path
-     * @return array|bool|null
+     * @return bool
      */
     public function has($path)
     {
@@ -273,7 +273,7 @@ class QiniuAdapter extends AbstractAdapter
      * @param bool $recursive
      * @return array
      */
-    public function listContents($directory = '', $recursive = false)
+    public function listContents($directory = '', $recursive = false): array
     {
         $directory = $this->applyPathPrefix($directory);
         $list = [];
@@ -379,7 +379,7 @@ class QiniuAdapter extends AbstractAdapter
      *
      * @return array
      */
-    private function listObjects($directory = '', $recursive = false, $marker = null)
+    private function listObjects($directory = '', $recursive = false, $marker = null): array
     {
         $prefix = $directory === '' ? '' : ($directory . '/');
         $delimiter = $recursive ? '' : '/';
@@ -402,7 +402,7 @@ class QiniuAdapter extends AbstractAdapter
      *
      * @return array
      */
-    private function normalizeFileInfo(array $content)
+    private function normalizeFileInfo(array $content): array
     {
         $path = pathinfo($content['key']);
         return [
@@ -422,7 +422,7 @@ class QiniuAdapter extends AbstractAdapter
      *
      * @return string
      */
-    public function getBucket()
+    public function getBucket(): string
     {
         return $this->config['bucket'];
     }
