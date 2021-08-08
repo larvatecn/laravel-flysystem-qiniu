@@ -2,8 +2,7 @@
 
 This is a Flysystem adapter for the Qiniu
 
-[![Build Status](https://travis-ci.com/larvatech/laravel-flysystem-qiniu.svg?branch=master)](https://travis-ci.com/larvatech/laravel-flysystem-qiniu)
-
+[![Build Status](https://travis-ci.com/larvatecn/laravel-flysystem-qiniu.svg?branch=master)](https://travis-ci.com/larvatecn/laravel-flysystem-qiniu)
 
 ## Installation
 
